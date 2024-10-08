@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  organizationservice:
+    image: microservice/organization:0.0.1-SNAPSHOT
+    ports:
+      - "5003:5003"
+    environment:
+      SPRING_PROFILES_ACTIVE: "dev"
+      SPRING_CONFIG_IMPORT: configserver:http://localhost:8080
+    networks:
+      backend:
+        aliases:
+          - "organizationservice"
+networks:
+  backend:
+    driver: bridge
